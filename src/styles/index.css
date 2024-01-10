@@ -3,10 +3,17 @@ body{
     margin: auto;
 }
 
-.box {
-    background: white;
-    width: 80px;
+.box, .clockbox {
+    background: black;
+    border-style: outset !important;
+    border: 3px;
+    border-color: aliceblue;
+    width: 90px;
     height: 150px;
     border-radius: 5px;
     text-align: center;
+    font-size: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
