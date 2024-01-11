@@ -7,10 +7,10 @@ body{
     background: black;
     border-style: outset !important;
     border: 3px;
-    border-color: aliceblue;
+    border-color: #d3af37;
     width: 90px;
     height: 150px;
-    border-radius: 5px;
+    border-radius: 8px;
     text-align: center;
     font-size: 3rem;
     display: flex;
@@ -18,3 +18,16 @@ body{
     align-items: center;
     color: white ;
 }
+
+.headerDiv{
+    border: 3px;
+    border-style: outset !important;
+    border-color: #d3af37;
+    border-radius: 5px;
+    width: 60vw;
+}
+.header{
+    color:white;
+    text-transform: uppercase;
+}
+
