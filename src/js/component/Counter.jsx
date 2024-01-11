@@ -20,14 +20,14 @@ export default function Counter(){
         if (seconds < 10){
             setFirstDigit(stringValue.charAt(0));
         }
-        if (seconds >= 10 || seconds < 100){
+        if (seconds >= 10 && seconds < 100){
             setFirstDigit(stringValue.charAt(1));
             setSecondDigit(stringValue.charAt(0));
         }
         if (seconds == 60){
             alert('1 minute passed!')
         }
-        if (seconds >= 100 || seconds < 1000){
+        if (seconds >= 100 && seconds < 1000){
             setFirstDigit(stringValue.charAt(2));
             setSecondDigit(stringValue.charAt(1));
             setThirdDigit(stringValue.charAt(0));
@@ -35,7 +35,7 @@ export default function Counter(){
         if (seconds == 600){
             alert('10 minute passed!')
         }
-        if (seconds >= 1000 || seconds < 10000){
+        if (seconds >= 1000 && seconds < 10000){
             setFirstDigit(stringValue.charAt(3));
             setSecondDigit(stringValue.charAt(2));
             setThirdDigit(stringValue.charAt(1));
