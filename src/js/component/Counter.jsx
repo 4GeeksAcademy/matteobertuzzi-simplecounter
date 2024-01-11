@@ -1,54 +1,65 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 
+
 export default function Counter(){
-    // 1. Declare states.
-
-    const [unit,setUnit]= useState(0);
-    const [decimal, setDecimal] = useState(0);
-    const [cent, setCent] = useState(0);
-    const [thousands, setThousands] = useState(0);
-
-    const countValue = 0;
-
-    function startInterval(countValue){
-        countValue++;
-        const countString = countValue.toString();
-        if (countValue < 10){
-            const firstDigit = countString.charAt(0);
-            setUnit(firstDigit);
-            console.log(firstDigit);
-        }
-        if ((countValue >= 10) || (countValue < 100)){
-            const secDigit = countString.charAt(1);
-            setDecimal(secDigit);
-        }
-        if ((countValue >= 100) || (countValue < 1000)){
-            const thirdDigit = countString.charAt(2);
-            setCent(thirdDigit);
-        }
-        if ((countValue >= 1000) || (countValue < 10000)){
-            const fourthDigit = countString.charAt(3);
-            setThousands(fourthDigit);
-        }
-    }
+    
+    const [seconds,setSeconds]= useState(0);
+    const [firstDigit, setFirstDigit] = useState(0);
+    const [secondDigit, setSecondDigit] = useState(0);
+    const [thirdDigit, setThirdDigit] = useState(0);
+    const [fourthDigit, setFourthDigit] = useState(0);
 
     useEffect(()=>{
-        const interval = setInterval(startInterval(countValue), 1000);
-    }, [unit, decimal, cent, thousands])
+        setInterval(()=>{
+        setSeconds(prevSecond => prevSecond +1);
+        },1000)}, [])
 
-    function stopInterval(){
-        clearInterval(interval);
-    }
+    useEffect(()=>{
+        let stringValue = seconds.toString();
+        if (seconds < 10){
+            setFirstDigit(stringValue.charAt(0));
+        }
+        if (seconds >= 10 || seconds < 100){
+            setFirstDigit(stringValue.charAt(1));
+            setSecondDigit(stringValue.charAt(0));
+        }
+        if (seconds == 60){
+            alert('1 minute passed!')
+        }
+        if (seconds >= 100 || seconds < 1000){
+            setFirstDigit(stringValue.charAt(2));
+            setSecondDigit(stringValue.charAt(1));
+            setThirdDigit(stringValue.charAt(0));
+            }
+        if (seconds == 600){
+            alert('10 minute passed!')
+        }
+        if (seconds >= 1000 || seconds < 10000){
+            setFirstDigit(stringValue.charAt(3));
+            setSecondDigit(stringValue.charAt(2));
+            setThirdDigit(stringValue.charAt(1));
+            setFourthDigit(stringValue.charAt(0))
+            }
+    }, [seconds]);
 
+function resetTimer(){
+    setSeconds(0);
+}
     return(
-        <div className="mainBox d-flex justify-content-center mt-5">
-            <div className="clockbox mx-3" id="unit"><i className="fa-regular fa-clock"></i></div>
-            <div className="box mx-3" id="dec">0</div>
-            <div className="box mx-3" id="dec">{thousands}</div>
-            <div className="box mx-3" id="dec">{cent}</div>
-            <div className="box mx-3" id="dec">{decimal}</div>
-            <div className="box mx-3" id="dec">{unit}</div>
-        </div>
+        <>
+            <div className="mainBox d-flex justify-content-center mt-5">
+                <div className="clockbox mx-3" id="unit"><i className="fa-regular fa-clock" style={{color: '#ffffff'}}></i></div>
+                <div className="box mx-3" id="fourth" >{fourthDigit?fourthDigit:0}</div>
+                <div className="box mx-3" id="third" >{thirdDigit?thirdDigit:0}</div>
+                <div className="box mx-3" id="sec" >{secondDigit?secondDigit:0}</div>
+                <div className="box mx-3" id="first" >{firstDigit?firstDigit:0}</div>
+            </div>
+                <div className="d-flex justify-content-center my-5">
+                <button type="button" className="btn btn-danger mx-3">Stop</button>
+                <button type="button" className="btn btn-warning mx-3">Resume</button>
+                <button type="button" className="btn btn-success mx-3" onClick={resetTimer}>Reset</button>
+            </div>
+        </>
     )
 }

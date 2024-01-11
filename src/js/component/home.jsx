@@ -1,11 +1,16 @@
 import React from "react";
+import Counter from "./Counter";
+import Header from './Header';
 
-import Counter from "./Counter"
+
 
 //create your first component
 const Home = () => {
 	return (
+	<div>
+		<Header />
 		<Counter />
+	</div>
 	);
 };
 
