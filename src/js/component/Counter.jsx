@@ -98,11 +98,11 @@ function resumeTimer(){
                 <button type="button" className="btn btn-warning mx-3" onClick={resumeTimer}>Resume</button>
                 <button type="button" className="btn btn-success mx-3" onClick={resetTimer}>Reset</button>
             </div>
-            <div className="input-group m-auto" style={{width:"70vw"}}>
+            <div className="input-group m-auto" style={{width:"60vw"}}>
                 <div className="input-group-prepend">
-                <span className="input-group-text" id="inputGroup-sizing-default">Set Countdown</span>
+                <span className="input-group-text" id="inputGroup-sizing-default" style={{border: "none", fontWeight:"bold", color:"white", background: "#d3af37"}}>Set Countdown</span>
                 </div>
-                <input type="text" className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" onChange={(e)=>startCountdown(e)} />
+                <input type="text" className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" onChange={(e)=>startCountdown(e)} placeholder="Enter your countdown value"/>
             </div>
         </>
     )
