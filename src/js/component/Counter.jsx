@@ -9,13 +9,32 @@ export default function Counter(){
     const [secondDigit, setSecondDigit] = useState(0);
     const [thirdDigit, setThirdDigit] = useState(0);
     const [fourthDigit, setFourthDigit] = useState(0);
+    const [isCountdown, setCountdown] = useState(false);
 
-    useEffect(()=>{
-        setInterval(()=>{
-        setSeconds(prevSecond => prevSecond +1);
-        },1000)}, [])
 
-    useEffect(()=>{
+
+useEffect(()=>{
+    if(isCountdown == false){
+        const intId = setInterval(()=>{
+            setSeconds(prevSecond => prevSecond +1);
+            console.log(seconds);
+            },1000)}
+    },[])
+
+
+    function startCountdown(e){
+        setCountdown(true);
+        const countdownValue = parseInt(e.target.value);
+        setSeconds(countdownValue);
+        const intervId = setInterval(()=>{
+            setSeconds(prevSecond => prevSecond -1);
+            if (seconds == 0){
+            clearInterval(intervId);
+            }}, 1000)
+    }
+
+    useEffect(()=>{       
+
         let stringValue = seconds.toString();
         if (seconds < 10){
             setFirstDigit(stringValue.charAt(0));
@@ -59,6 +78,12 @@ function resetTimer(){
                 <button type="button" className="btn btn-danger mx-3">Stop</button>
                 <button type="button" className="btn btn-warning mx-3">Resume</button>
                 <button type="button" className="btn btn-success mx-3" onClick={resetTimer}>Reset</button>
+            </div>
+            <div className="input-group m-auto" style={{width:"70vw"}}>
+                <div className="input-group-prepend">
+                <span className="input-group-text" id="inputGroup-sizing-default">Set Countdown</span>
+                </div>
+                <input type="text" className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" onChange={(e)=>startCountdown(e)} />
             </div>
         </>
     )
